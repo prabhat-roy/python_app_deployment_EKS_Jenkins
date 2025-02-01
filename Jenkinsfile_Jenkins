@@ -1,0 +1,34 @@
+def gv_script
+pipeline {
+     agent any
+     tools {
+       
+    }
+    environment {
+         GITHUB_URL = "https://github.com/prabhat-roy/particle41.git"
+         BRANCH = "main"
+    }
+    stages {
+        stage("Init") {
+            steps {
+                script {
+                    gv_script = load"jenkins.groovy"
+                }
+            }
+        }
+        stage("Clean Workspace") {
+            steps {
+                script {
+                    gv_script.clean()
+                }
+            }
+        }
+        stage("Checkout from Git Repo") {
+            steps {
+                script {
+                    gv_script.checkout()
+                }
+            }
+        }
+    }
+}
