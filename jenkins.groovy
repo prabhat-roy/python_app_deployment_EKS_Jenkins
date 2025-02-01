@@ -2,5 +2,5 @@ def clean() {
         cleanWs()
 }
 def checkout() {
-        git branch: "${BRANCH}", url: "$GITHUB_URL"
+        git branch: 'main', url: 'https://github.com/prabhat-roy/particle41.git'
 }
