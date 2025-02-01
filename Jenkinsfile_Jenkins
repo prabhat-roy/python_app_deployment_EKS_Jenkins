@@ -1,9 +1,6 @@
 def gv_script
 pipeline {
      agent any
-     tools {
-       
-    }
     environment {
          GITHUB_URL = "https://github.com/prabhat-roy/particle41.git"
          BRANCH = "main"
