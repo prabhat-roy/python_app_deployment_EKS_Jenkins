@@ -6,20 +6,6 @@ pipeline {
          BRANCH = "main"
     }
     stages {
-        stage("Init") {
-            steps {
-                script {
-                    gv_script = load 'jenkins.groovy'
-                }
-            }
-        }
-        stage("Clean Workspace") {
-            steps {
-                script {
-                    gv_script.clean()
-                }
-            }
-        }
         stage("Checkout from Git Repo") {
             steps {
                 git branch: "${BRANCH}", url: "$GITHUB_URL"
@@ -28,6 +14,13 @@ pipeline {
         stage("Terraform Version") {
             steps {
                 sh 'terraform --version'
+            }
+        }
+        stage("Terraform Init") {
+            steps {
+                dir("Terraform/Jenkins") {
+                    sh 'terraform init'
+                }
             }
         }
     }
