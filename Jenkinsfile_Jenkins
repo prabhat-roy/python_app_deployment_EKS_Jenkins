@@ -23,5 +23,12 @@ pipeline {
                 }
             }
         }
+        stage("Terraform Plan") {
+            steps {
+                dir("Terraform/Jenkins") {
+                    sh 'terraform plan'
+                }
+            }
+        }
     }
 }
