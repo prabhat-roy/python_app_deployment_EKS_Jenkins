@@ -4,3 +4,6 @@ def clean() {
 def checkout() {
         git branch: "${BRANCH}", url: "$GITHUB_URL"
 }
+def version () {
+    sh 'terraform --version'
+}

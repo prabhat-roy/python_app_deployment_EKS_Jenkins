@@ -13,10 +13,24 @@ pipeline {
                 }
             }
         }
+        stage("Clean Workspace") {
+            steps {
+                script {
+                    gv_script.clean()
+                }
+            }
+        }
         stage("Checkout from Git Repo") {
             steps {
                 script {
                     gv_script.checkout()
+                }
+            }
+        }
+        stage("Terraform Version") {
+            steps {
+                script {
+                    gv_script.version()
                 }
             }
         }
