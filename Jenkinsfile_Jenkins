@@ -18,14 +18,14 @@ pipeline {
         }
         stage("Terraform Init") {
             steps {
-                dir("Terraform/Jenkins") {
+                dir("Terraform/EKS") {
                     sh 'terraform init'
                 }
             }
         }
         stage("Terraform Plan") {
             steps {
-                dir("Terraform/Jenkins") {
+                dir("Terraform/EKS") {
                     sh 'terraform plan'
                 }
             }

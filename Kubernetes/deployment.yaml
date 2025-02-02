@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: simpletimeservice-deployment
+  labels:
+    app: simpletimeservice
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: simpletimeservice
+  template:
+    metadata:
+      labels:
+        app: simpletimeservice
+    spec:
+      containers:
+      - name: simpletimeservice
+        image: 873330726955.dkr.ecr.ap-south-2.amazonaws.com/simpletimeservice:TAG
+        ports:
+        - containerPort: 5000
