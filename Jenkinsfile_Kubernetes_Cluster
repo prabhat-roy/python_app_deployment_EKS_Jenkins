@@ -23,6 +23,13 @@ pipeline {
                 }
             }
         }
+        stage("Terraform Validate") {
+            steps {
+                dir("Terraform/EKS") {
+                    sh 'terraform validate'
+                }
+            }
+        }
         stage("Terraform Plan") {
             steps {
                 dir("Terraform/EKS") {
