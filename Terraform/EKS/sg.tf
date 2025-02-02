@@ -122,7 +122,7 @@ resource "aws_security_group_rule" "ssh_access" {
   protocol          = "tcp"
   security_group_id = aws_security_group.eks_nodes_sg.id
 
-  cidr_blocks = ["${chomp(data.http.icanhazip.response_body)}/32"]
+  cidr_blocks = [data.aws_vpc.eks_vpc.cidr_block]
 }
 
 resource "aws_security_group_rule" "worker_node_egress_internet" {
