@@ -3,7 +3,8 @@ pipeline {
     environment {
          GITHUB_URL = "https://github.com/prabhat-roy/particle41.git"
          BRANCH = "main"
-         IMAGE_NAME = "simpletimeservice"         
+         IMAGE_NAME = "simpletimeservice"
+    }         
     stages {
         stage("Checkout from Git Repo") {
             steps {
@@ -25,7 +26,6 @@ pipeline {
                 sh 'kubectl delete service simpletimeservice-service -n simpletimeservice'
             }
         }
-    }
     stage("Delete Kubernetes Namespace") {
             steps {
                 sh 'kubectl delete namespace simpletimeservice'
