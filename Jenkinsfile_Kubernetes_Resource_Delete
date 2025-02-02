@@ -3,12 +3,7 @@ pipeline {
     environment {
          GITHUB_URL = "https://github.com/prabhat-roy/particle41.git"
          BRANCH = "main"
-         SCANNER_HOME =tool "SonarQube"
          IMAGE_NAME = "simpletimeservice"         
-         ACC_ID = "873330726955"
-         REGION = "ap-south-2"
-         ECR = "${ACC_ID}.dkr.ecr.${REGION}.amazonaws.com"
-    }
     stages {
         stage("Checkout from Git Repo") {
             steps {
@@ -20,10 +15,20 @@ pipeline {
                 sh 'aws eks update-kubeconfig --region ap-south-2 --name EKS-Cluster'
             }
         }
-        stage("Check the worker node") {
+        stage("Delete Kubernetes Deployment") {
             steps {
-                sh 'kubectl get nodes -o wide'
+                sh 'kubectl delete deployment simpletimeservice-deployment -n simpletimeservice'
+            }
+        }
+        stage("Delete Kubernetes Service") {
+            steps {
+                sh 'kubectl delete service simpletimeservice-service -n simpletimeservice'
             }
         }
     }
+    stage("Delete Kubernetes Namespace") {
+            steps {
+                sh 'kubectl delete namespace simpletimeservice'
+            }
+        }
 }
