@@ -87,7 +87,7 @@ pipeline {
             steps {
                 script {
                     sh 'kubectl get namespace'
-                    sh 'kubectl get pods -ns simpletimeservice'
+                    sh 'kubectl get pod -ns simpletimeservice'
                     sh 'kubectl get svc -ns simpletimeservice'
                 }
             }
