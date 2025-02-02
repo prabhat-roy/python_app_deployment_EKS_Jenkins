@@ -46,7 +46,7 @@ resource "aws_security_group_rule" "eks_cluster_egress_nginx" {
 resource "aws_security_group" "eks_nodes_sg" {
   name        = "${var.cluster_name}-eks-nodes-sg"
   description = "Security group for all nodes in the cluster"
-  vpc_id      = aws_vpc.aws_vpc.id
+  vpc_id      = data.aws_vpc.eks_vpc.id
 
   tags = {
     Name                                        = "${var.cluster_name}-eks-nodes-sg"
