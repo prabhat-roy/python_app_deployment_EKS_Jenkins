@@ -18,6 +18,3 @@ variable "capacity" {
 variable "disk_size" {
   type = number
 }
-variable "vpc_id" {
-  
-}
