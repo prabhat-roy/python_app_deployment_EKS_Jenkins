@@ -83,12 +83,12 @@ pipeline {
                 sleep(time:60, unit: "SECONDS")
             }
         }
-        stage("Check the status") {
+        stage("Get the loadbalancer details") {
             steps {
                 script {
                     sh 'kubectl get namespace'
-                    sh 'kubectl get pods --all-namespaces'
-                    sh 'kubectl get svc -ns simpletimeservice'
+                    sh 'kubectl get pods -n simpletimeservice'
+                    sh 'kubectl get services -n simpletimeservice'
                 }
             }
         }
