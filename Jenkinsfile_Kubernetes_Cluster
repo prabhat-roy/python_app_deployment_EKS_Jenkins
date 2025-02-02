@@ -37,5 +37,12 @@ pipeline {
                 }
             }
         }
+        stage("Terraform Apply/Destroy") {
+            steps {
+                dir("Terraform/EKS") {
+                    sh 'terraform ${Action} --auto-approve'
+                }
+            }
+        }
     }
 }
