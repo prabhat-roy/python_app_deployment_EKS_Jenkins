@@ -1,3 +1,4 @@
+/*
 resource "aws_launch_template" "eks_node_group" {
   name_prefix = "${var.cluster_name}-eks-node-group"
   description = "Launch template for ${var.cluster_name} EKS node group"
@@ -39,3 +40,4 @@ resource "aws_launch_template" "eks_node_group" {
     create_before_destroy = true
   }
 }
+*/

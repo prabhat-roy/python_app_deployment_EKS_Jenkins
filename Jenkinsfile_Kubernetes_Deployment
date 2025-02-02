@@ -1,0 +1,21 @@
+def gv_script
+pipeline {
+     agent any
+    environment {
+         GITHUB_URL = "https://github.com/prabhat-roy/particle41.git"
+         BRANCH = "main"
+         SCANNER_HOME =tool "SonarQube"
+         IMAGE_NAME = "simpletimeservice"         
+         ACC_ID = "873330726955"
+         REGION = "ap-south-2"
+         ECR = "${ACC_ID}.dkr.ecr.${REGION}.amazonaws.com"
+
+    }
+    stages {
+        stage("Checkout from Git Repo") {
+            steps {
+                git branch: "${BRANCH}", url: "$GITHUB_URL"
+            }
+        }
+    }
+}
