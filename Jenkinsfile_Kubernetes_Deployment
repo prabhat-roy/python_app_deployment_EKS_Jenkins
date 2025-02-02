@@ -15,6 +15,16 @@ pipeline {
                 git branch: "${BRANCH}", url: "$GITHUB_URL"
             }
         }
+        stage("Trivy file scan") {
+            steps {
+                sh 'trivy fs .'
+            }
+        }
+        stage("Create Docker Image") {
+            steps {
+                sh 'docker build -t ${IMAGE_NAME}:${BUILD_NUMBER} .'
+            }
+        }
         stage("Update Kubeconfig file") {
             steps {
                 sh 'aws eks update-kubeconfig --region ap-south-2 --name EKS-Cluster'
