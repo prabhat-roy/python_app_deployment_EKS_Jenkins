@@ -8,15 +8,15 @@ data "aws_vpc" "eks_vpc" {
 
 data "aws_subnets" "public" {
     filter {
-      name = "Public*"
-      values = [data.aws_vpc.eks_vpc.id]
+      name = "tag:Name"
+      values = ["Public*"]
     }
 }
 
 data "aws_subnets" "private" {
     filter {
-      name = "Private*"
-      values = [data.aws_vpc.eks_vpc.id]
+      name = "tag:Name"
+      values = ["Private*"]
     }
 }
 
@@ -24,8 +24,8 @@ output "vpc" {
   value = data.aws_vpc.eks_vpc.id
 }
 output "public-subnet" {
-    value = data.aws_subnets.public[*].id
+    value = data.aws_subnets.public.ids
 }
 output "private-subnet" {
-    value = data.aws_subnets.private[*].id
+    value = data.aws_subnets.private.ids
 }
