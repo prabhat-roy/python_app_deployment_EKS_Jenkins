@@ -1,4 +1,3 @@
-/*
 resource "aws_eks_cluster" "cluster1" {
   name     = var.cluster_name
   role_arn = aws_iam_role.eks-iam-role.arn
@@ -8,4 +7,3 @@ resource "aws_eks_cluster" "cluster1" {
   }
   depends_on = [aws_iam_role.eks-iam-role]
 }
-*/

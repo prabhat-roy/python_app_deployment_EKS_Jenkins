@@ -1,7 +1,7 @@
-/*resource "aws_security_group" "eks_cluster_sg" {
+resource "aws_security_group" "eks_cluster_sg" {
   name        = "${var.cluster_name}-eks-cluster-sg"
   description = "Security group for EKS cluster control plane communication with worker nodes"
-  vpc_id      = aws_vpc.aws_vpc.id
+  vpc_id      = data.aws_vpc.eks_vpc.id
 
   lifecycle {
     create_before_destroy = true
@@ -134,4 +134,3 @@ resource "aws_security_group_rule" "worker_node_egress_internet" {
   security_group_id = aws_security_group.eks_nodes_sg.id
   description       = "Allow outbound internet access"
 }
-*/
