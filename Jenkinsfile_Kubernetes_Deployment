@@ -20,6 +20,13 @@ pipeline {
                 sh 'trivy fs .'
             }
         }
+        stage("SonarQube Analysis") {
+            steps {
+                 withSonarQubeEnv('SonarQube') {
+                    sh '$SCANNER_HOME/bin/sonar-scanner -Dsonar.projectName=SimpleTimeService -Dsonar.projectKey=SimpleTimeService'
+                 }
+            }
+        }
         stage("Create Docker Image") {
             steps {
                 sh 'docker build -t ${IMAGE_NAME}:${BUILD_NUMBER} .'
@@ -59,6 +66,30 @@ pipeline {
         stage("Check the worker node") {
             steps {
                 sh 'kubectl get nodes -o wide'
+            }
+        }
+        stage("Kubernetes Deployment") {
+            steps {
+                script {
+                    sh 'sed -i "s/<TAG>/${BUILD_NUMBER}/" Kunernetes/deployment.yaml'
+                    sh 'kubectl apply -f namespace.yaml'
+                    sh 'kubectl apply -f deployment.yaml -n simpletimeservice'
+                    sh 'kubectl apply -f service.yaml -n simpletimeservice'
+                }
+            }
+        }
+        stage("Wait few moments") {
+            steps {
+                sleep(time:60, unit: "SECONDS")
+            }
+        }
+        stage("Check the status") {
+            steps {
+                script {
+                    sh 'kubectl get namespace'
+                    sh 'kubectl get pods -ns simpletimeservice'
+                    sh 'kubectl get svc -ns simpletimeservice'
+                }
             }
         }
     }
