@@ -1,28 +1,6 @@
-data "aws_ami" "ami" {
-
-  most_recent = true
-  owners      = ["amazon"]
-
-  filter {
-    name   = "name"
-    values = ["ubuntu/images/hvm-ssd-gp3/ubuntu*"]
-
-  }
-
-  filter {
-    name   = "architecture"
-    values = ["x86_64"]
-  }
-
-  filter {
-    name   = "virtualization-type"
-    values = ["hvm"]
-  }
-}
-
 resource "aws_instance" "jenkins" {
   instance_type          = var.jenkins_instance_type
-  ami                    = data.aws_ami.ami.image_id
+  ami                    = local.ami
   subnet_id              = aws_subnet.public_subnet[0].id
   vpc_security_group_ids = [aws_security_group.jenkins_sg.id]
   key_name               = var.key_name

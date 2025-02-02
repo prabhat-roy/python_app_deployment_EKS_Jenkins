@@ -1,5 +1,9 @@
 data "aws_vpc" "eks_vpc" {
-    id = var.vpc_id
+    filter {
+      name = "tag:Name"
+      values = ["Application VPC"]
+
+    }
 }
 
 data "aws_subnets" "public" {
