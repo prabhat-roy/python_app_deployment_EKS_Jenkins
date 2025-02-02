@@ -32,7 +32,12 @@ pipeline {
         }
         stage("Syft Image Scan") {
             steps {
-                sh 'syft image ${IMAGE_NAME}:${BUILD_NUMBER}'
+                sh 'syft ${IMAGE_NAME}:${BUILD_NUMBER}'
+            }
+        }
+        stage("Grype Image Scan") {
+            steps {
+                sh 'grype ${IMAGE_NAME}:${BUILD_NUMBER}'
             }
         }
         stage("AWS ECR login and image push") {
