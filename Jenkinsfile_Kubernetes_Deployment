@@ -72,9 +72,9 @@ pipeline {
             steps {
                 script {
                     sh 'sed -i "s/<TAG>/${BUILD_NUMBER}/" Kubernetes/deployment.yaml'
-                    sh 'kubectl apply -f namespace.yaml'
-                    sh 'kubectl apply -f deployment.yaml -n simpletimeservice'
-                    sh 'kubectl apply -f service.yaml -n simpletimeservice'
+                    sh 'kubectl apply -f Kubernetes/namespace.yaml'
+                    sh 'kubectl apply -f Kubernetes/deployment.yaml -n simpletimeservice'
+                    sh 'kubectl apply -f Kubernetes/service.yaml -n simpletimeservice'
                 }
             }
         }
