@@ -25,6 +25,27 @@ pipeline {
                 sh 'docker build -t ${IMAGE_NAME}:${BUILD_NUMBER} .'
             }
         }
+        stage("Trivy Image Scan") {
+            steps {
+                sh 'trivy image ${IMAGE_NAME}:${BUILD_NUMBER}'
+            }
+        }
+        stage("Syft Image Scan") {
+            steps {
+                sh 'syft image ${IMAGE_NAME}:${BUILD_NUMBER}'
+            }
+        }
+        stage("AWS ECR login and image push") {
+            steps {
+                script {
+                    sh '''
+                        aws ecr get-login-password --region ${REGION} | docker login --username AWS --password-stdin ${ECR}
+                        docker tag ${IMAGE_NAME}:${BUILD_NUMBER} ${ECR}/${IMAGE_NAME}:${BUILD_NUMBER}
+                        docker push ${ECR}/${IMAGE_NAME}:${BUILD_NUMBER}
+                    '''
+                }
+            }
+        }
         stage("Update Kubeconfig file") {
             steps {
                 sh 'aws eks update-kubeconfig --region ap-south-2 --name EKS-Cluster'
