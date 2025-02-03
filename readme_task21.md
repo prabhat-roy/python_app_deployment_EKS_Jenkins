@@ -14,7 +14,6 @@ Ensure you have the following installed and configured before proceeding:
 ```
 
 ### Step 2: Create an AWS IAM User
-![AWS IAM User]
 - Create a user in the AWS IAM console.
 - Assign `AdministratorAccess` policy.
 - Generate and store the credentials securely.
@@ -23,7 +22,6 @@ Ensure you have the following installed and configured before proceeding:
 Ensure AWS CLI and Terraform are installed on your system.
 
 ### Step 4: Configure AWS Credentials
-![AWS Configure]
 ```sh
  aws configure
 ```
@@ -33,7 +31,6 @@ Provide the credentials generated in Step 2.
 Navigate to the Terraform directory and modify the values in `terraform.tfvars` as needed.
 
 ### Step 6: Initialize Terraform
-![Terraform Init]
 ```sh
  terraform init
 ```
@@ -49,7 +46,6 @@ Navigate to the Terraform directory and modify the values in `terraform.tfvars` 
 ```
 
 ### Step 9: Apply Terraform Configuration
-![Terraform Apply]
 ```sh
  terraform apply -auto-approve
 ```
@@ -58,7 +54,6 @@ Navigate to the Terraform directory and modify the values in `terraform.tfvars` 
 Copy the admin password from the last line of the Terraform output.
 
 ### Step 11: Access Jenkins and SonarQube
-![Jenkins Login](images/jenkins_login.png)
 Visit the URL provided in the Terraform output to log into Jenkins and SonarQube.
 
 ### Step 12: Configure Jenkins
