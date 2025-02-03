@@ -21,10 +21,4 @@ resource "aws_eks_node_group" "node_group" {
     aws_iam_role_policy_attachment.AmazonEKS_CNI_Policy,
     aws_iam_role_policy_attachment.AmazonEC2ContainerRegistryReadOnly,
   ]
-  /*
-  launch_template {
-    id      = aws_launch_template.eks_node_group.id
-    version = "$Default"
-  }
-*/
 }

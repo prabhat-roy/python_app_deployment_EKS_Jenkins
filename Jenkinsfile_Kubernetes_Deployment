@@ -83,7 +83,7 @@ pipeline {
                 sleep(time:60, unit: "SECONDS")
             }
         }
-        stage("Get the loadbalancer details") {
+        stage("Get the deployment details") {
             steps {
                 script {
                     sh 'kubectl get namespace'
@@ -91,6 +91,10 @@ pipeline {
                     sh 'kubectl get services -n simpletimeservice'
                 }
             }
+        }
+        stage("Remove docker images") {
+            steps {
+                sh 'docker rmi -f ${IMAGE_NAME}:${BUILD_NUMBER}'            }
         }
     }
 }
