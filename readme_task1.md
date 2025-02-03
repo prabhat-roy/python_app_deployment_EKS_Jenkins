@@ -19,5 +19,14 @@ Step 6: Open any browser and visit http:127.0.0.1:5000 to get the output
 Step 7 : Stop the container after verification is complete using the command
 docker stop simpletimeservice
 
+Step 8 : Tag the docker image using the command
+ docker image tag simpletimeservice prabhatrkumaroy/simpletimeservice:v1
+
+Step 9 : Login to dockerhub a and create a repository. For example the name is simpletimeimage
+
+Step 9 : Push the docker image to dockerhub using the command
+prabhatrkumaroy/simpletimeservice:v1
+
 Step 8 : Remove the comtainer to save space using the command
 docker rmi -f simpletimeservice
+docker rmi -f prabhatrkumaroy/simpletimeservice:v1
