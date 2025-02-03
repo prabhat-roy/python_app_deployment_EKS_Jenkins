@@ -1,63 +1,109 @@
-Steps for task 2
--------------------------------------------------------------------------------
-Step 1 : Step 1 : User needs to clone the repository from https://github.com/prabhat-roy/particle41.git
+# Project Setup Guide
 
-Step 2 : Create a user in AWS IAM console and provide AdministratorAccess policy. Also generate a 
-credential to authenticate with terraform
+## Prerequisites
+Ensure you have the following installed and configured before proceeding:
+- AWS CLI
+- Terraform
+- Git
 
-Step 3 : Download and install AWS cli and terraform to create the infrastructure
+## Steps to Set Up the Project
 
-Step 4 : Run aws configure and provide the credentials generated from step 2.
+### Step 1: Clone the Repository
+```sh
+ git clone https://github.com/prabhat-roy/particle41.git
+```
 
-Step 5 : Navigate to Terraform directory and modify the value in terraform.tfvars file to customize
+### Step 2: Create an AWS IAM User
+- Create a user in the AWS IAM console.
+- Assign `AdministratorAccess` policy.
+- Generate and store the credentials securely.
 
-Step 6 : Run terraform init to initialize
+### Step 3: Install AWS CLI and Terraform
+Ensure AWS CLI and Terraform are installed on your system.
 
-Step 7 : Run terraform validate to check everything
+### Step 4: Configure AWS Credentials
+```sh
+ aws configure
+```
+Provide the credentials generated in Step 2.
 
-Step 8 : Run terraform plan to generate the plan
+### Step 5: Configure Terraform Variables
+Navigate to the Terraform directory and modify the values in `terraform.tfvars` as needed.
 
-Step 9 : Run Terraform apply -auto-approve to create the infrastructure
+### Step 6: Initialize Terraform
+```sh
+ terraform init
+```
 
-Step 10: When finished, copy the content mentioned in the last line of the output which is the initial admin password of the Jenkins
+### Step 7: Validate Terraform Configuration
+```sh
+ terraform validate
+```
 
-Step 11 : Visit the URL as part of terraform output to login into Jenkins and sonarqube
+### Step 8: Generate a Terraform Execution Plan
+```sh
+ terraform plan
+```
 
-Step 12 : With the help of the password (step 10), create a user in Jenkins and then create the pipelines. We will create three pipelines, one is to create and delete Kubernetes cluster, another one is for deployment of the application and last one is to delete resources in Kubernetes.
+### Step 9: Apply Terraform Configuration
+```sh
+ terraform apply -auto-approve
+```
 
-Step 13 : Login to sonarqube url and login with admin/admin creadential. Need to change the password after first login. 
+### Step 10: Retrieve Jenkins Admin Password
+Copy the admin password from the last line of the Terraform output.
 
-Step 14 : Generate a credential in sonarqube to be used in jenkins
- 
-Step 15 : Go to Jenkins and then go to manage Jenkins -> plugins and add the sonarqube plugin
- 
-Step 16 : Go to manage Jenkins -> credentials and add a credential of sonarqube of type secret text and put the token from sonarqube. 
- 
-Step 17 : Got to manage Jenkins -> System and configure sonarqube details. Since sonarqube is also running in Jenkins server, so the IP will be 127.0.0.1. And also select the credential from the dropdown.
- 
-Step 18 : Go to manage Jenkins -> tools and add sonarqube scanner
- 
-Step 19 : From the dashboard, go to new item and create a pipeline to create Kubernetes cluster. Provide a name and choose pipeline. 
- 
-Step 20 : Scroll down and select “This project is paramaterized” and click on add parameter button
- 
-Step 21 : Select Choice parameter from the dropdown 
- 
-Step 22 : Provide the name and choices as per below
- 
-Step 23 : scroll down and provide the details of the pipeline. Definition will be Pipeline script from SCM, URL will be https://github.com/prabhat-roy/particle41.git , branch will be main and script will be Jenkinsfile_Kubernetes_Cluster (as per below) and save it.
- 
- 
-Step 24 : from the pipeline page, Click on build with parameters and select apply action from the dropdown and click on build button to run the pipeline. It will take around 15 – 20 minutes to complete. 
- 
-Step 25 : From the dashboard, create another pipeline (without parameter) and the script path will be “Jenkinsfile_Kubernetes_Deployment”. It is for application deployment in the Kubernetes cluster. After completing above step, run this pipeline to deploy.
- 
+### Step 11: Access Jenkins and SonarQube
+Visit the URL provided in the Terraform output to log into Jenkins and SonarQube.
 
-Step 26 : From the dashboard, create another pipeline (without parameter) and the script path will be “Jenkinsfile_Kubernetes_Resource_Delete”. Its for deleting of Kubernetes resources created in above steps. 
+### Step 12: Configure Jenkins
+- Log into Jenkins using the admin password.
+- Create three pipelines:
+   Kubernetes Cluster Creation and Deletion, Application Deployment and Resource Deletion in Kubernetes
 
-Step 27 : All the pipelines are created.
+### Step 13: Configure SonarQube
+- Log into SonarQube with `admin/admin` and change the password.
+- Generate a credential to use in Jenkins.
+![SonarQube Token](images/sonarqube_credentials.png)
+
+### Step 14: Install and Configure SonarQube Plugin in Jenkins
+- Go to **Manage Jenkins → Plugins** and install the SonarQube plugin.
+![Jenkins Plugin](images/jenkins_plugin.png)
+- Navigate to **Manage Jenkins → Credentials** and add a **Secret Text** credential using the SonarQube token.
+![SonarQube Token](images/sonarqube_token.png)
+- Go to **Manage Jenkins → System**, configure SonarQube with IP `127.0.0.1`, and select the credential.
+![SonarQube](images/sonarqube.png)
+- Install SonarQube Scanner from **Manage Jenkins → Tools**.
+![SonarQube Scanner](images/sonarqube_scanner.png)
+
+### Step 15: Create Kubernetes Cluster Pipeline in Jenkins
+- From the Jenkins dashboard, create a **New Item**.
+- Select **Pipeline** and provide a name.
+![Pipeline 1](images/pipeline1.png)
+- Enable "This project is parameterized" and add a **Choice Parameter**.
+![Pipeline 2](images/pipeline2.png)
+- Select Choice parameter from the dropdown
+![Pipeline 3](images/pipeline3.png)
+- Provide the name and choices
+![Pipeline 4](images/pipeline4.png)
+- Set the pipeline definition to "Pipeline script from SCM" with the following:
+  - **SCM URL**: `https://github.com/prabhat-roy/particle41.git`
+  - **Branch**: `main`
+  - **Script Path**: `Jenkinsfile_Kubernetes_Cluster`
+ ![Pipeline 5](images/pipeline5.png) 
+- Click **Build with Parameters**, choose "apply action," and run the pipeline. This process takes around 15–20 minutes.
+ ![Pipeline 6](images/pipeline6.png) 
+### Step 16: Create Application Deployment Pipeline
+- Create another pipeline with **Script Path**: `Jenkinsfile_Kubernetes_Deployment`.
+- Run the pipeline to deploy the application.
  
-Step 28 : Copy the load balancer url (from step 25) and paste in any browser to get the output.
- 
-Step 29 : Go to sonarqube page to check the status.
- 
+### Step 17: Create Kubernetes Resource Deletion Pipeline
+- Create another pipeline with **Script Path**: `Jenkinsfile_Kubernetes_Resource_Delete`.
+- Run this pipeline to delete Kubernetes resources.
+
+### Step 18: Verify Deployment
+- Copy the **Load Balancer URL** (from Step 16) and open it in a browser to check the application.
+![Pipeline 7](images/pipeline7.png)
+- Navigate to SonarQube to verify code quality status.
+![Sonarqube_check](images/sonarqube_check.png)
+---
