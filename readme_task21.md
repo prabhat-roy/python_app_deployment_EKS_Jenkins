@@ -59,11 +59,12 @@ Visit the URL provided in the Terraform output to log into Jenkins and SonarQube
 ### Step 12: Configure Jenkins
 - Log into Jenkins using the admin password.
 - Create three pipelines:
-   Kubernetes Cluster Creation and Deletion**
-   Application Deployment**
-   Resource Deletion in Kubernetes**
+   Kubernetes Cluster Creation and Deletion
+   Application Deployment
+   Resource Deletion in Kubernetes
 
 ### Step 13: Configure SonarQube
+(images/sonarqube_credentials.png)
 - Log into SonarQube with `admin/admin` and change the password.
 - Generate a credential to use in Jenkins.
 
