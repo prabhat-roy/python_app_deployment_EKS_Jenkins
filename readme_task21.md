@@ -66,7 +66,7 @@ Visit the URL provided in the Terraform output to log into Jenkins and SonarQube
 ### Step 13: Configure SonarQube
 - Log into SonarQube with `admin/admin` and change the password.
 - Generate a credential to use in Jenkins.
-
+![SonarQube Token](images/sonarqube_credentials.png)
 ### Step 14: Install and Configure SonarQube Plugin in Jenkins
 - Go to **Manage Jenkins → Plugins** and install the SonarQube plugin.
 ![Jenkins Plugin](images/jenkins_plugin.png)
