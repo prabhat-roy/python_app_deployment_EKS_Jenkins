@@ -64,13 +64,15 @@ Visit the URL provided in the Terraform output to log into Jenkins and SonarQube
    Resource Deletion in Kubernetes
 
 ### Step 13: Configure SonarQube
-![SonarQube Token](images/sonarqube_credentials.png)
 - Log into SonarQube with `admin/admin` and change the password.
 - Generate a credential to use in Jenkins.
+![SonarQube Token](images/sonarqube_credentials.png)
 
 ### Step 14: Install and Configure SonarQube Plugin in Jenkins
 - Go to **Manage Jenkins → Plugins** and install the SonarQube plugin.
+![Jenkins Plugin](images/jenkins_plugin.png)
 - Navigate to **Manage Jenkins → Credentials** and add a **Secret Text** credential using the SonarQube token.
+![SonarQube Token](images/sonarqube_token.png)
 - Go to **Manage Jenkins → System**, configure SonarQube with IP `127.0.0.1`, and select the credential.
 - Install SonarQube Scanner from **Manage Jenkins → Tools**.
 
