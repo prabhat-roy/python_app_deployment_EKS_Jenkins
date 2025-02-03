@@ -66,7 +66,7 @@ Visit the URL provided in the Terraform output to log into Jenkins and SonarQube
 ### Step 13: Configure SonarQube
 - Log into SonarQube with `admin/admin` and change the password.
 - Generate a credential to use in Jenkins.
-![SonarQube Token](images/sonarqube_credentials.png)
+
 ### Step 14: Install and Configure SonarQube Plugin in Jenkins
 - Go to **Manage Jenkins → Plugins** and install the SonarQube plugin.
 ![Jenkins Plugin](images/jenkins_plugin.png)
@@ -82,27 +82,29 @@ Visit the URL provided in the Terraform output to log into Jenkins and SonarQube
 - Select **Pipeline** and provide a name.
 ![Pipeline 1](images/pipeline1.png)
 - Enable "This project is parameterized" and add a **Choice Parameter**.
-![Pipeline 2](images/pipeline2.png)
+
+- Select Choice parameter from the dropdown
+![Pipeline 1](images/pipeline3.png)
+- Provide the name and choices
+![Pipeline 1](images/pipeline4.png)
 - Set the pipeline definition to "Pipeline script from SCM" with the following:
   - **SCM URL**: `https://github.com/prabhat-roy/particle41.git`
   - **Branch**: `main`
   - **Script Path**: `Jenkinsfile_Kubernetes_Cluster`
+ ![Pipeline 5](images/pipeline5.png) 
 - Click **Build with Parameters**, choose "apply action," and run the pipeline. This process takes around 15–20 minutes.
-
+ ![Pipeline 6](images/pipeline6.png) 
 ### Step 16: Create Application Deployment Pipeline
 - Create another pipeline with **Script Path**: `Jenkinsfile_Kubernetes_Deployment`.
 - Run the pipeline to deploy the application.
-
+ 
 ### Step 17: Create Kubernetes Resource Deletion Pipeline
 - Create another pipeline with **Script Path**: `Jenkinsfile_Kubernetes_Resource_Delete`.
 - Run this pipeline to delete Kubernetes resources.
 
 ### Step 18: Verify Deployment
-![Load Balancer](images/load_balancer.png)
 - Copy the **Load Balancer URL** (from Step 16) and open it in a browser to check the application.
+![Pipeline 7](images/pipeline7.png)
 - Navigate to SonarQube to verify code quality status.
-
+![Sonarqube_check](images/sonarqube_check.png)
 ---
-**Repository:** [particle41](https://github.com/prabhat-roy/particle41.git)
-
-This completes the setup. Your infrastructure and CI/CD pipelines are now ready!
