@@ -59,13 +59,14 @@ Visit the URL provided in the Terraform output to log into Jenkins and SonarQube
 ### Step 12: Configure Jenkins
 - Log into Jenkins using the admin password.
 - Create three pipelines:
-   Kubernetes Cluster Creation and Deletion
-   Application Deployment
+   Kubernetes Cluster Creation and Deletion, 
+   Application Deployment an
    Resource Deletion in Kubernetes
 
 ### Step 13: Configure SonarQube
 - Log into SonarQube with `admin/admin` and change the password.
 - Generate a credential to use in Jenkins.
+![SonarQube Token](images/sonarqube_credentials.png)
 
 ### Step 14: Install and Configure SonarQube Plugin in Jenkins
 - Go to **Manage Jenkins → Plugins** and install the SonarQube plugin.
@@ -82,11 +83,11 @@ Visit the URL provided in the Terraform output to log into Jenkins and SonarQube
 - Select **Pipeline** and provide a name.
 ![Pipeline 1](images/pipeline1.png)
 - Enable "This project is parameterized" and add a **Choice Parameter**.
-
+![Pipeline 2](images/pipeline2.png)
 - Select Choice parameter from the dropdown
-![Pipeline 1](images/pipeline3.png)
+![Pipeline 3](images/pipeline3.png)
 - Provide the name and choices
-![Pipeline 1](images/pipeline4.png)
+![Pipeline 4](images/pipeline4.png)
 - Set the pipeline definition to "Pipeline script from SCM" with the following:
   - **SCM URL**: `https://github.com/prabhat-roy/particle41.git`
   - **Branch**: `main`
