@@ -9,7 +9,6 @@ Ensure you have the following installed and configured before proceeding:
 ## Steps to Set Up the Project
 
 ### Step 1: Clone the Repository
-![Clone Repository]
 ```sh
  git clone https://github.com/prabhat-roy/particle41.git
 ```
