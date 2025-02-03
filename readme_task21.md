@@ -9,13 +9,13 @@ Ensure you have the following installed and configured before proceeding:
 ## Steps to Set Up the Project
 
 ### Step 1: Clone the Repository
-![Clone Repository](images/clone_repo.png)
+![Clone Repository]
 ```sh
  git clone https://github.com/prabhat-roy/particle41.git
 ```
 
 ### Step 2: Create an AWS IAM User
-![AWS IAM User](images/aws_iam_user.png)
+![AWS IAM User]
 - Create a user in the AWS IAM console.
 - Assign `AdministratorAccess` policy.
 - Generate and store the credentials securely.
@@ -24,7 +24,7 @@ Ensure you have the following installed and configured before proceeding:
 Ensure AWS CLI and Terraform are installed on your system.
 
 ### Step 4: Configure AWS Credentials
-![AWS Configure](images/aws_configure.png)
+![AWS Configure]
 ```sh
  aws configure
 ```
@@ -34,7 +34,7 @@ Provide the credentials generated in Step 2.
 Navigate to the Terraform directory and modify the values in `terraform.tfvars` as needed.
 
 ### Step 6: Initialize Terraform
-![Terraform Init](images/terraform_init.png)
+![Terraform Init]
 ```sh
  terraform init
 ```
@@ -50,7 +50,7 @@ Navigate to the Terraform directory and modify the values in `terraform.tfvars` 
 ```
 
 ### Step 9: Apply Terraform Configuration
-![Terraform Apply](images/terraform_apply.png)
+![Terraform Apply]
 ```sh
  terraform apply -auto-approve
 ```
