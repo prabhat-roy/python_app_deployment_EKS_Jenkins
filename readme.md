@@ -10,7 +10,7 @@ Ensure you have the following installed and configured before proceeding:
 
 ### Step 1: Clone the Repository
 ```sh
- git clone https://github.com/prabhat-roy/particle41.git
+ git clone https://github.com/prabhat-roy/python_app_deployment_EKS_Jenkins.git
 ```
 
 ### Step 2: Create an AWS IAM User
@@ -87,7 +87,7 @@ Visit the URL provided in the Terraform output to log into Jenkins and SonarQube
 - Provide the name and choices
 ![Pipeline 4](images/pipeline4.png)
 - Set the pipeline definition to "Pipeline script from SCM" with the following:
-  - **SCM URL**: `https://github.com/prabhat-roy/particle41.git`
+  - **SCM URL**: `https://github.com/prabhat-roy/python_app_deployment_EKS_Jenkins.git`
   - **Branch**: `main`
   - **Script Path**: `Jenkinsfile_Kubernetes_Cluster`
  ![Pipeline 5](images/pipeline5.png) 

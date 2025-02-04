@@ -1,7 +1,7 @@
 pipeline {
      agent any
     environment {
-         GITHUB_URL = "https://github.com/prabhat-roy/particle41.git"
+         GITHUB_URL = "https://github.com/prabhat-roy/python_app_deployment_EKS_Jenkins.git"
          BRANCH = "main"
          IMAGE_NAME = "simpletimeservice"
     }         
